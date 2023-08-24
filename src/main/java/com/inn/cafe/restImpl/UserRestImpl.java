@@ -19,13 +19,11 @@ public class UserRestImpl implements UserRest {
 
 	@Override
 	public ResponseEntity<String> SignUp(Map<String, String> requestMap) {
-
 		try {
 			return userService.SignUp(requestMap);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return CafeUtils.getResponseEntity(CafeConstents.SOMETING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
 
 	}
