@@ -29,7 +29,9 @@ public class UserServiceImpl implements UserService {
 //		log.info("inside signUp{}", requestMap);
 try {
 		if (validateSignUp(requestMap)) {
-			User user = userDao.findByEmailId(requestMap.containsKey("email"));
+			
+			User user = userDao.findByEmailId(requestMap.get("email"));
+			
 			if (Objects.isNull(user)) {
 
 				userDao.save(getUserFromMap(requestMap));
@@ -52,7 +54,7 @@ try {
 
 	private boolean validateSignUp(Map<String, String> requestMap) {
 
-		if (requestMap.containsKey("name") && requestMap.containsKey("email") && requestMap.containsKey("phoneNumber")
+		if (requestMap.containsKey("name") && requestMap.containsKey("email") && requestMap.containsKey("contactNumber")
 				&& requestMap.containsKey("password")) {
 			return true;
 		} else {
